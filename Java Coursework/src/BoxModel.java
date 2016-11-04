@@ -1,16 +1,16 @@
-
+// this is an abstract class to model every box
 public abstract class BoxModel {
-private int width;
-private int height;
-private int length;
-private int grade;
-private int boxColour;
-private boolean sealed, bottom, corner;
-protected double cost;
-private int area;
-private int extraCost;
-protected int type;
-private double price;
+private int width; // width of the box
+private int height; // height of the box
+private int length; // length of the box
+private int grade; // grade of the box
+private int boxColour; // color either, 0, 1 or 2
+private boolean sealed, bottom, corner; // to check if the box is sealed, has reinforced corners or bottoms
+protected double cost; // cost of the box
+private int area; // area of the box 2*(height * width) + 2*(height * length) + 2 * (width * length);
+private int extraCost; // extra cost if any extra options added, sealed etc
+protected int type; // type of the box
+private double price; // price of the box , depends on grade
 
 public BoxModel(int width, int height, int length, int grade,int boxColour, boolean sealed, boolean bottom, boolean corner)
 {
@@ -22,85 +22,165 @@ public BoxModel(int width, int height, int length, int grade,int boxColour, bool
 	this.sealed = sealed;
 	this.bottom = bottom;
 	this.corner = corner;
-	cost = 0;
-	price = 0;
+	setCost(0); 
+	setPrice(0);
 }
 
-public int calculateArea()
-{
+/***
+ * method to calculate the area of the given boxes length, width and height
+ * @return
+ */
+public int calculateArea(){
 	area = 2*(height * width) + 2*(height * length) + 2 * (width * length);
 	return area;
 }
 
 
-
-public void calculateCost()
-{
-	cost = calculateArea() * gradeCost();
-	cost += cost / 100 * extraCost();
+/***
+ * method to calculate the cost of the chosen box
+ */
+public void calculateCost(){
+	cost = calculateArea() * gradeCost(); // sets the current cost to be equal to area * price
+	cost += cost / 100 * extraCost(); // adds any extra cost to the cost variable
+	
+	System.out.println(extraCost);
 }
 
+/***
+ * returns the type of the box
+ * @return
+ */
+public int getType() {
+	return type;
+}
+
+/***
+ * sets the type of the box
+ * @param type
+ */
+public void setType(int type) {
+	this.type = type;
+}
+
+/***
+ * returns the price of the box
+ * @return
+ */
+public double getPrice() {
+	return price;
+}
+
+/***
+ * sets the price of the box
+ * @param price
+ */
+public void setPrice(double price) {
+	this.price = price;
+}
+
+
+/***
+ * sets the cost of the box
+ * @param cost
+ */
+public void setCost(double cost) {
+	this.cost = cost;
+}
+
+/***
+ * returns the cost of the box
+ * @return 
+ */
 public double getCost() {
 	return cost;
 }
 
-
+/***
+ * returns the width of the box
+ * @return
+ */
 public int getWidth() {
 	return width;
 }
+
+/***
+ * sets the width of the box
+ * @param width
+ */
 public void setWidth(int width) {
 	this.width = width;
 }
+
+/***
+ * returns the height of the box
+ * @return
+ */
 public int getHeight() {
 	return height;
 }
-public void setHeight(int height) {
-	this.height = height;
-}
+
+/***
+ * returns the length of the box
+ * @return
+ */
 public int getLength() {
 	return length;
 }
-public void setLength(int length) {
-	this.length = length;
-}
+
+/***
+ * returns the grade of the box
+ * @return
+ */
 public int getGrade() {
 	return grade;
 }
-public void setGrade(int grade) {
-	this.grade = grade;
-}
+
+/***
+ * returns the colour of the box
+ * @return
+ */
 public int getBoxColour() {
 	return boxColour;
 }
-public void setBoxColour(int boxColour) {
-	this.boxColour = boxColour;
-}
+
+/***
+ * returns the true if the box is sealed else false
+ * @return
+ */
 public boolean isSealed() {
 	return sealed;
 }
-public void setSealed(boolean sealable) {
-	this.sealed = sealable;
-}
+
+/***
+ * returns true if the bottom of the box is reinforced
+ * @return
+ */
 public boolean isBottom() {
 	return bottom;
 }
-public void setBottom(boolean bottom) {
-	this.bottom = bottom;
-}
+
+/***
+ * returns the true if the corners of the box are reinforced
+ * @return
+ */
 public boolean isCorner() {
 	return corner;
 }
-public void setCorner(boolean corner) {
-	this.corner = corner;
-}
 
+/***
+ * returns the type of the box
+ * @return
+ */
 public int getBoxType()
 {
 	return type;
 }
 
 
-
+/***
+ * returns extraCost if there is any
+ * @return
+ */
 public int extraCost()
 {
 	if(getBoxType() == 1)
@@ -119,7 +199,7 @@ public int extraCost()
 	
 	if(getBoxType() == 4)
 	{
-		extraCost = 22;
+		extraCost = 30;
 	}
 	
 	if(getBoxType() == 5)
@@ -135,7 +215,12 @@ public int extraCost()
 	return extraCost;
 	
 }
-	public double gradeCost()
+
+/***
+ * returns the price per box, depending on chosen grade
+ * @return
+ */
+public double gradeCost()
 	{
 		if(getGrade() == 1)
 		{
