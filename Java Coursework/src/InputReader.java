@@ -25,7 +25,7 @@ public InputReader()
 			
 			while(!orderCompleted)
 			{
-				System.out.println("hello how are you ?? : ");
+				System.out.println("hiii yoo : ");
 				width = reader.nextInt();
 				System.out.println("Please enter a height : ");
 				height = reader.nextInt();
