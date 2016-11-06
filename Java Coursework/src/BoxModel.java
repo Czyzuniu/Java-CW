@@ -42,7 +42,7 @@ public int calculateArea(){
 public void calculateCost(){
 	cost = calculateArea() * gradeCost(); // sets the current cost to be equal to area * price
 	cost += cost / 100 * extraCost(); // adds any extra cost to the cost variable
-	
+	cost = cost / 100;
 	System.out.println(extraCost);
 }
 

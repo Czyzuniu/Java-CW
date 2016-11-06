@@ -15,7 +15,10 @@ private JComboBox<Integer> gradeList;
 private JComboBox<String> colourList;
 private Integer[] grades = new Integer[] {1,2,3,4,5};
 private String[] colours = new String[] {"no colour", "1 colour", "2 colours"};
-
+private JRadioButton bottomR;
+private JRadioButton cornerR;
+private JRadioButton sealed;
+private JTextField quantity;
 	public OrderPanel(String border) {
 		super(border);
 		init();
@@ -26,9 +29,11 @@ private String[] colours = new String[] {"no colour", "1 colour", "2 colours"};
 	public void init()
 	{
 		//Font font = new Font("Arial", 16, Font.BOLD);
-		JSlider width = new JSlider();
-		JSlider length = new JSlider();
-		JSlider height = new JSlider();
+		width = new JSlider();
+		length = new JSlider();
+		height = new JSlider();
+		
+		
 		
 		JLabel filler = new JLabel("                           ");
 		JLabel lwidth = new JLabel(" specify your width in cm :   ");
@@ -46,11 +51,11 @@ private String[] colours = new String[] {"no colour", "1 colour", "2 colours"};
 		gradeList = new JComboBox<Integer>(grades);
 		colourList = new JComboBox<String>(colours);
 		
-		JRadioButton bottomR = new JRadioButton();
-		JRadioButton cornerR = new JRadioButton();
-		JRadioButton sealed = new JRadioButton();
+		bottomR = new JRadioButton();
+		cornerR = new JRadioButton();
+		sealed = new JRadioButton();
 		
-		JTextField quantity = new JTextField();
+		quantity = new JTextField();
 		quantity.setColumns(10);
 		
 		
@@ -85,7 +90,46 @@ private String[] colours = new String[] {"no colour", "1 colour", "2 colours"};
 	public int getgradeList()
 	{
 		return grades[gradeList.getSelectedIndex()];
-		
+	}
+	
+	public int getColourList()
+	{
+		return colourList.getSelectedIndex();
+	}
+	
+	public boolean isSealed()
+	{
+		return sealed.isSelected();
+	}
+
+	public boolean bottom()
+	{
+		return bottomR.isSelected();
+	}
+	
+	public boolean corner()
+	{
+		return cornerR.isSelected();
+	}
+	
+	public int getChosenWidth()
+	{
+		return width.getValue();
+	}
+	
+	public int getChosenLength()
+	{
+		return length.getValue();
+	}
+	
+	public int getChosenHeight()
+	{
+		return height.getValue();
+	}
+	
+	public int getQuantity()
+	{
+		return Integer.parseInt(quantity.getText());
 	}
 	
 }
