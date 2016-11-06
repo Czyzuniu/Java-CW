@@ -3,11 +3,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class MainPanel extends JPanel{
-BottomPanel Bpanel;
-OrderPanel 	Opanel;
+private BottomPanel Bpanel;
+private OrderPanel 	Opanel;
 
 
 	public MainPanel()
@@ -18,8 +19,9 @@ OrderPanel 	Opanel;
 	
 	public void init()
 	{
-		Bpanel = new BottomPanel("bottomPanel");
 		Opanel = new OrderPanel("Order");
+		Bpanel = new BottomPanel("bottomPanel", Opanel);
+		
 		
 		Dimension size = getPreferredSize();
 		size.width = 600;
@@ -39,5 +41,10 @@ OrderPanel 	Opanel;
 		add(right, BorderLayout.EAST);
 		add(north, BorderLayout.NORTH);
 		add(Opanel, BorderLayout.CENTER);
+		
+		
+		
 	}
+	
+	
 }
