@@ -11,7 +11,6 @@ private OrderPanel oPanel;
 		this.oPanel = oPanel;
 		resetButton();
 		submitButton();
-		
 	}
 
 	

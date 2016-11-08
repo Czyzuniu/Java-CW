@@ -32,7 +32,7 @@ public BoxModel(int width, int height, int length, int grade,int boxColour, bool
  */
 public int calculateArea(){
 	area = 2*(height * width) + 2*(height * length) + 2 * (width * length);
-	return area;
+	return area / 100;
 }
 
 
@@ -42,7 +42,7 @@ public int calculateArea(){
 public void calculateCost(){
 	cost = calculateArea() * gradeCost(); // sets the current cost to be equal to area * price
 	cost += cost / 100 * extraCost(); // adds any extra cost to the cost variable
-	cost = cost / 100;
+	
 	System.out.println(extraCost);
 }
 
