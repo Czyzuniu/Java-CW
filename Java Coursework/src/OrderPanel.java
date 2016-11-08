@@ -1,10 +1,15 @@
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class OrderPanel extends PanelModel {
 private JSlider width;
@@ -18,73 +23,194 @@ private JRadioButton bottomR;
 private JRadioButton cornerR;
 private JRadioButton sealed;
 private JTextField quantity;
-
-	public OrderPanel(String border) {
+private JLabel filler, lwidth, lheight, llength, lgrade, lcolor, lbottom, lsealed, lcorner, lquantity;
+private JLabel value;
+	
+public OrderPanel(String border) {
 		super(border);
 		init();
-		setLayout(new FlowLayout());
+	
 		
 	}
 	
 	public void init()
 	{
 		//Font font = new Font("Arial", 16, Font.BOLD);
-		width = new JSlider();
-		length = new JSlider();
-		height = new JSlider();
+		
+		createSliders();
+		createLabels();
+		createLists();
+		createRadioButtons();
+		createTextBoxes();
+		
+		addCompontents();
 		
 		
 		
-		JLabel filler = new JLabel("                           ");
-		JLabel lwidth = new JLabel(" specify your width in cm :   ");
-		JLabel llength = new JLabel("  specify your length in cm : ");
-		JLabel lheight = new JLabel("  specify your height in cm : ");
-		JLabel lgrade = new JLabel("specify grade of your card : ");
-		JLabel lcolor = new JLabel("specify colour printing of your box : ");
-		JLabel lbottom = new JLabel("Would you like bottom reinforcement?: ");
-		JLabel lcorner = new JLabel("Would you like corner reinforcement?: ");
-		JLabel lsealed = new JLabel("Would you like your box to be sealed?");
-		JLabel lquantity = new JLabel("How many of these boxes would you like?");
-		
-		
-
+	}
+	
+	public void createLists()
+	{
 		gradeList = new JComboBox<Integer>(grades);
 		colourList = new JComboBox<String>(colours);
-		
+	}
+	
+	public void createRadioButtons()
+	{
 		bottomR = new JRadioButton();
 		cornerR = new JRadioButton();
 		sealed = new JRadioButton();
-		
+	}
+	
+	public void createLabels()
+	{
+
+		filler = new JLabel("                           ");
+		lwidth = new JLabel("specify your width in cm : ");
+		lheight = new JLabel("specify your height in cm : ");
+		llength = new JLabel("specify your length in cm : ");
+		lgrade = new JLabel("specify grade of your card : ");
+		lcolor = new JLabel("specify colour printing of your box : ");
+		lbottom = new JLabel("Would you like bottom reinforcement?: ");
+		lcorner = new JLabel("Would you like corner reinforcement?: ");
+		lsealed = new JLabel("Would you like your box to be sealed?");
+		lquantity = new JLabel("How many of these boxes would you like?");
+		value = new JLabel("");
+	}
+	
+	public void createSliders()
+	{
+		width = new JSlider();
+		width.setMajorTickSpacing(20);
+		width.setMinorTickSpacing(5);
+		width.setPaintTicks(true);
+		width.setPaintLabels(true);
+		width.addChangeListener(new ChangeListener(){
+
+			public void stateChanged(ChangeEvent e) {
+				
+				lwidth.setText("specify your length in cm : " + getChosenWidth());
+				
+			}
+			
+		});
+		length = new JSlider();
+		length.setMajorTickSpacing(20);
+		length.setMinorTickSpacing(5);
+		length.setPaintTicks(true);
+		length.setPaintLabels(true);
+		length.addChangeListener(new ChangeListener(){
+
+			public void stateChanged(ChangeEvent e) {
+				
+				llength.setText("specify your length in cm : " + getChosenLength());
+				
+			}
+			
+		});
+		height = new JSlider();
+		height.setMajorTickSpacing(20);
+		height.setMinorTickSpacing(5);
+		height.setPaintTicks(true);
+		height.setPaintLabels(true);
+		height.addChangeListener(new ChangeListener(){
+
+			public void stateChanged(ChangeEvent e) {
+				
+				lheight.setText("specify your height in cm : " + getChosenHeight());
+				
+			}
+			
+		});
+	}
+	
+	public void createTextBoxes()
+	{
 		quantity = new JTextField();
 		quantity.setColumns(10);
+	}
+	
+	public void addCompontents()
+	{
+		setLayout(new GridBagLayout());
+		GridBagConstraints gc = new GridBagConstraints();
+		
+		gc.weightx = 1;
+		gc.weighty = 2;
+		
+		gc.gridx = 0;
+		gc.gridy = 0;
+		
+		add(lwidth, gc);
+		
+		gc.gridx = 1;
+		gc.gridy = 0;
+		add(width,gc);
+		
+		gc.gridx = 0;
+		gc.gridy = 1;
+		add(llength, gc);
+		
+		gc.gridx = 1;
+		gc.gridy = 1;
+		add(length,gc);
+		
+		gc.gridx = 0;
+		gc.gridy = 2;
+		add(lheight,gc);
+		
+		gc.gridx = 1;
+		gc.gridy = 2;
+		add(height,gc);
+		
+		gc.gridx = 0;
+		gc.gridy = 3;
+		add(lgrade,gc);
+		
+		gc.gridx = 1;
+		gc.gridy = 3;
+		add(gradeList,gc);
 		
 		
+		gc.gridx = 0;
+		gc.gridy = 4;
+		add(lcolor,gc);
 		
-		add(lwidth);
-		add(width);
+		gc.gridx = 1;
+		gc.gridy = 4;
+		add(colourList, gc);
 		
-		add(llength);
-		add(length);
+		gc.gridx = 0;
+		gc.gridy = 5;
+		add(lbottom,gc);
 		
-		add(lheight);
-		add(height);
+		gc.gridx = 1;
+		gc.gridy = 5;
+		add(bottomR,gc);
 		
+		gc.gridx = 0;
+		gc.gridy = 6;
+		add(lcorner,gc);
 		
-		add(lgrade);
-		add(gradeList);
-		add(filler);
+		gc.gridx = 1;
+		gc.gridy = 6;
+		add(cornerR,gc);
 		
-		add(lcolor);
-		add(colourList);
+		gc.gridx = 0;
+		gc.gridy = 7;
+		add(lsealed,gc);
 		
-		add(lbottom);
-		add(bottomR);
-		add(lcorner);
-		add(cornerR);
-		add(lsealed);
-		add(sealed);
-		add(lquantity);
-		add(quantity);
+		gc.gridx = 1;
+		gc.gridy = 7;
+		add(sealed,gc);
+		
+		gc.gridx = 0;
+		gc.gridy = 8;
+		add(lquantity,gc);
+		
+		gc.gridx = 1;
+		gc.gridy = 8;
+		add(quantity,gc);
 	}
 
 	public int getgradeList()
@@ -132,4 +258,16 @@ private JTextField quantity;
 		return Integer.parseInt(quantity.getText());
 	}
 	
+	public void reset()
+	{
+		width.setValue(50);
+		height.setValue(50);
+		length.setValue(50);
+		gradeList.setSelectedIndex(0);
+		colourList.setSelectedIndex(0);
+		bottomR.setSelected(false);
+		cornerR.setSelected(false);
+		sealed.setSelected(false);
+		quantity.setText("");
+	}
 }

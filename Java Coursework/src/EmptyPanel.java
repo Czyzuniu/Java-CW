@@ -11,5 +11,6 @@ public class EmptyPanel extends PanelModel{
 		size.height = 30;
 		setPreferredSize(size);
 		setBackground(Color.WHITE);
+		
 	}
 }

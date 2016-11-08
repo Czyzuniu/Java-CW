@@ -4,6 +4,7 @@ public class BottomPanel extends PanelModel{
 private JButton submit;
 private JButton reset;
 private Submit submitOrder;
+private Reset resetOrder;
 private OrderPanel oPanel;
 
 	public BottomPanel(String border, OrderPanel oPanel) {
@@ -26,6 +27,8 @@ private OrderPanel oPanel;
 	public void resetButton()
 	{
 		reset = new JButton("Reset");
+		resetOrder = new Reset(oPanel);
+		reset.addActionListener(resetOrder);
 		add(reset);
 	}
 	
