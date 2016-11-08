@@ -36,7 +36,7 @@ private JTextField quantity;
 		
 		
 		JLabel filler = new JLabel("                           ");
-		JLabel lwidth = new JLabel(" specify your width in cm :   ");
+		JLabel lwidth = new JLabel(" siema co tam :   ");
 		JLabel llength = new JLabel("  specify your length in cm : ");
 		JLabel lheight = new JLabel("  specify your height in cm : ");
 		JLabel lgrade = new JLabel("specify grade of your card : ");
