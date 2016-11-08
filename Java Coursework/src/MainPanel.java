@@ -6,10 +6,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class MainPanel extends JPanel{
+public class MainPanel extends PanelModel{
 private BottomPanel Bpanel;
 private OrderPanel 	Opanel;
-
 
 	public MainPanel()
 	{
