@@ -7,7 +7,6 @@ import javax.swing.JSlider;
 import javax.swing.JTextField;
 
 public class OrderPanel extends PanelModel {
-private FlowLayout layout;
 private JSlider width;
 private JSlider height;
 private JSlider length;
@@ -19,10 +18,11 @@ private JRadioButton bottomR;
 private JRadioButton cornerR;
 private JRadioButton sealed;
 private JTextField quantity;
+
 	public OrderPanel(String border) {
 		super(border);
 		init();
-		setLayout(layout = new FlowLayout());
+		setLayout(new FlowLayout());
 		
 	}
 	
