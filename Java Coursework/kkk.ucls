@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="BottomPanel" project="Java-CW_Java Coursework" 
     file="/Java-CW_Java Coursework/src/BottomPanel.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="151" y="261"/>    
+    <position height="-1" width="-1" x="147" y="424"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
