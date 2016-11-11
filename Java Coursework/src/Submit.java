@@ -10,15 +10,20 @@ private boolean bottom,corner,sealed;
 private ArrayList<BoxModel>boxes;
 private String another;
 private OrderPanel oPanel;
+private InvoicePanel iPanel;
 
-	public Submit(OrderPanel oPanel)
+	public Submit(OrderPanel oPanel, InvoicePanel iPanel)
 	{
 		this.oPanel = oPanel;
+		this.iPanel = iPanel;
 		boxes = new ArrayList<BoxModel>();
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		
+		
+		iPanel.setVisible(false);
+		oPanel.setVisible(true);
 		width = oPanel.getChosenWidth();
 		height = oPanel.getChosenHeight();
 		length = oPanel.getChosenLength();
@@ -89,17 +94,13 @@ private OrderPanel oPanel;
 			System.out.println("Sorry, but we are not producing boxes of your specifications");
 		}
 	
-		System.out.println("You currently have " + boxes.size() + " items in your order");
+		//System.out.println("");
+		iPanel.printOut("You currently have " + boxes.size() + " items in your order");
 		
 		type = 0;
-	for(BoxModel b: boxes)
-	{
-		
-		b.calculateCost();
-		totalCost += b.cost;
-	}
 	
-	System.out.println("Total cost of your order is: " + totalCost + " pounds");
+	
+
 		
 	}
 	

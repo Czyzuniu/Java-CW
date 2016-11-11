@@ -1,8 +1,6 @@
-import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
-
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
@@ -23,12 +21,12 @@ private JRadioButton bottomR;
 private JRadioButton cornerR;
 private JRadioButton sealed;
 private JTextField quantity;
-private JLabel filler, lwidth, lheight, llength, lgrade, lcolor, lbottom, lsealed, lcorner, lquantity;
-private JLabel value;
+private JLabel lwidth, lheight, llength, lgrade, lcolor, lbottom, lsealed, lcorner, lquantity;
 	
-public OrderPanel(String border) {
-		super(border);
+public OrderPanel(String border, int width, int height) {
+		super(border, width, height);
 		init();
+		
 	
 		
 	}
@@ -65,17 +63,18 @@ public OrderPanel(String border) {
 	public void createLabels()
 	{
 
-		filler = new JLabel("                           ");
-		lwidth = new JLabel("specify your width in cm : ");
-		lheight = new JLabel("specify your height in cm : ");
-		llength = new JLabel("specify your length in cm : ");
+		
+		lwidth = new JLabel("specify your width in cm : " + getChosenWidth());
+		lheight = new JLabel("specify your height in cm : " + getChosenHeight());
+		llength = new JLabel("specify your length in cm : " + getChosenLength());
 		lgrade = new JLabel("specify grade of your card : ");
 		lcolor = new JLabel("specify colour printing of your box : ");
 		lbottom = new JLabel("Would you like bottom reinforcement?: ");
 		lcorner = new JLabel("Would you like corner reinforcement?: ");
 		lsealed = new JLabel("Would you like your box to be sealed?");
 		lquantity = new JLabel("How many of these boxes would you like?");
-		value = new JLabel("");
+
+		
 	}
 	
 	public void createSliders()
@@ -89,7 +88,7 @@ public OrderPanel(String border) {
 
 			public void stateChanged(ChangeEvent e) {
 				
-				lwidth.setText("specify your length in cm : " + getChosenWidth());
+				lwidth.setText("specify your width in cm : " + getChosenWidth());
 				
 			}
 			

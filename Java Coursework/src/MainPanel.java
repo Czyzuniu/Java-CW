@@ -16,8 +16,10 @@ private OrderPanel 	Opanel;
 	
 	public void init()
 	{
-		Opanel = new OrderPanel("Order");
-		Bpanel = new BottomPanel("bottomPanel", Opanel);
+		InvoicePanel Ipanel = new InvoicePanel("Invoice", 500,450);
+		Opanel = new OrderPanel("Order", 500,450);
+		Bpanel = new BottomPanel("bottomPanel", Opanel, Ipanel);
+		
 		
 		
 		Dimension size = getPreferredSize();
@@ -32,13 +34,16 @@ private OrderPanel 	Opanel;
 		EmptyPanel left = new EmptyPanel();
 		EmptyPanel right = new EmptyPanel();
 		EmptyPanel north = new EmptyPanel();
+		EmptyPanel center = new EmptyPanel();
 		
 		add(Bpanel, BorderLayout.SOUTH);
 		add(left, BorderLayout.WEST);
 		add(right, BorderLayout.EAST);
 		add(north, BorderLayout.NORTH);
-		add(Opanel, BorderLayout.CENTER);
+		add(center, BorderLayout.CENTER);
 		
+		center.add(Opanel);
+		center.add(Ipanel);
 		
 		
 	}
