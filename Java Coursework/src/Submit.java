@@ -93,7 +93,7 @@ private LogPanel lPanel;
 			}
 			else if(quantity <= 0)
 			{
-				lPanel.print("Please enter a number in quantity field", true);
+				lPanel.print("Incorrect input, please enter a number less then 25", true);
 			}
 			else
 			{

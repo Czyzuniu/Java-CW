@@ -92,11 +92,11 @@ public OrderPanel(String border, int width, int height) {
 	public void createSliders()
 	{
 		width = new JSlider();
+		width.setMinimum(1);
 		width.setMajorTickSpacing(20);
 		width.setMinorTickSpacing(5);
 		width.setPaintTicks(true);
 		width.setPaintLabels(true);
-		width.setMinimum(1);
 		width.addChangeListener(new ChangeListener(){
 
 			public void stateChanged(ChangeEvent e) {
