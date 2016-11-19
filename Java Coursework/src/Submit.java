@@ -7,7 +7,6 @@ public class Submit extends AbstractAction {
 private int width,height,length,grade,colours,type, quantity;
 private double totalCost;
 private boolean bottom,corner,sealed;
-private ArrayList<BoxModel>boxes;
 private OrderPanel oPanel;
 private LogPanel lPanel;
 
@@ -15,7 +14,6 @@ private LogPanel lPanel;
 	{
 		this.oPanel = oPanel;
 		this.lPanel = lPanel;
-		boxes = new ArrayList<BoxModel>();
 	}
 	
 	
@@ -33,7 +31,7 @@ private LogPanel lPanel;
 		
 		
 		
-		if(boxes.size() + quantity <= 25)
+		if(oPanel.getBasket().size() + quantity <= 25)
 		{
 			
 			if(calculateType() == 1)
@@ -41,7 +39,7 @@ private LogPanel lPanel;
 				
 				for(int i = 0; i < quantity; i++)
 				{
-					boxes.add(new BoxType1(width,height,length,grade,colours,sealed,bottom,corner));
+					oPanel.getBasket().add(new BoxType1(width,height,length,grade,colours,sealed,bottom,corner));
 				}
 	
 				
@@ -52,7 +50,7 @@ private LogPanel lPanel;
 			
 				for(int i = 0; i < quantity; i++)
 				{
-					boxes.add(new BoxType2(width,height,length,grade,colours,sealed,bottom,corner));
+					oPanel.getBasket().add(new BoxType2(width,height,length,grade,colours,sealed,bottom,corner));
 				}
 				
 			}
@@ -62,7 +60,7 @@ private LogPanel lPanel;
 				
 				for(int i = 0; i < quantity; i++)
 				{
-					boxes.add(new BoxType3(width,height,length,grade,colours,sealed,bottom,corner));
+					oPanel.getBasket().add(new BoxType3(width,height,length,grade,colours,sealed,bottom,corner));
 				}
 				
 			}
@@ -73,7 +71,7 @@ private LogPanel lPanel;
 	
 				for(int i = 0; i < quantity; i++)
 				{
-					boxes.add(new BoxType4(width,height,length,grade,colours,sealed,bottom,corner));
+					oPanel.getBasket().add(new BoxType4(width,height,length,grade,colours,sealed,bottom,corner));
 				}
 				
 			}
@@ -83,7 +81,7 @@ private LogPanel lPanel;
 	
 				for(int i = 0; i < quantity; i++)
 				{
-					boxes.add(new BoxType5(width,height,length,grade,colours,sealed,bottom,corner));
+					oPanel.getBasket().add(new BoxType5(width,height,length,grade,colours,sealed,bottom,corner));
 				}
 				
 			}
@@ -148,11 +146,7 @@ private LogPanel lPanel;
 		return type;
 	}
 	
-	public int getBasketSize()
-	{
-		return boxes.size();
-	}
-	
+	/*
 	public String more()
 	{
 		int t1 = 0;
@@ -189,6 +183,6 @@ private LogPanel lPanel;
 		
 		return information;
 	}
-
+*/
 
 }

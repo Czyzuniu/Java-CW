@@ -2,6 +2,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.ArrayList;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
@@ -22,6 +24,7 @@ private JRadioButton bottomR;
 private JRadioButton cornerR;
 private JRadioButton sealed;
 private JTextField quantity;
+private ArrayList<BoxModel>boxes;
 private BottomPanel bPanel;
 private InvoicePanel iPanel;
 private LogPanel lPanel;
@@ -37,7 +40,7 @@ public OrderPanel(String border, int width, int height) {
 	public void init()
 	{
 		//Font font = new Font("Arial", 16, Font.BOLD);
-		
+		boxes = new ArrayList<BoxModel>();
 		createSliders();
 		createLabels();
 		createLists();
@@ -278,6 +281,16 @@ public OrderPanel(String border, int width, int height) {
 		}
 		
 		return q;
+	}
+	
+	public int basketSize()
+	{
+		return boxes.size();
+	}
+	
+	public ArrayList<BoxModel> getBasket()
+	{
+		return boxes;
 	}
 	
 	public void reset()

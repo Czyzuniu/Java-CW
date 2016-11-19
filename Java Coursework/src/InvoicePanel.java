@@ -52,7 +52,17 @@ private JButton checkOut;
 	public void createCheckOut()
 	{
 		checkOut = new JButton("Checkout");
+		checkOut.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+			
+				checkOut();
+				
+			}
+			
+		});
 		add(checkOut,BorderLayout.SOUTH);
+		
 		
 	}
 	
@@ -66,7 +76,18 @@ private JButton checkOut;
 	
 	public void printBasketInfo(String info){
 		textArea.setText(info);
+	}
+	
+	public void checkOut()
+	{
+		double total = 0;
+		for(BoxModel b: oPanel.getBasket())
+		{
+			b.calculateCost();
+			total += b.getCost();
+		}
 		
+		textArea.setText("Total cost of your order is : " + total);
 	}
 	
 }

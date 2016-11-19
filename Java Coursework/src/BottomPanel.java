@@ -87,7 +87,7 @@ private LogPanel lPanel;
 	
 	public String BasketInfo()
 	{
-		String information = "Your basket currently has " +  submitOrder.getBasketSize() + " boxes ";
+		String information = "Your basket currently has " +  oPanel.basketSize() + " boxes ";
 		
 		return information;
 	}
