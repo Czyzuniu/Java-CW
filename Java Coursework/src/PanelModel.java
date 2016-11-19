@@ -29,4 +29,5 @@ public abstract class PanelModel extends JPanel {
 		setPreferredSize(size);
 	}
 	
+	
 }

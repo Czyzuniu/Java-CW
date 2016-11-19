@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -9,20 +10,49 @@ public class InvoicePanel extends PanelModel {
 	
 private JButton backButton;
 private JTextArea textArea;
+private OrderPanel oPanel;
+private BottomPanel bPanel;
+private JButton checkOut;
+
 	public InvoicePanel(String border , int width, int height)
 	{
 		super(border, width, height);
+	
 		setLayout(new BorderLayout());
 		setVisible(false);
 		createBackButton();
 		createTextField();
+		createCheckOut();
+	}
+	
+	public void linkPanels(OrderPanel oPanel, BottomPanel bPanel)
+	{
+		this.oPanel = oPanel;
+		this.bPanel = bPanel;
 	}
 	
 	
 	public void createBackButton()
 	{
-		backButton = new JButton("back?");
+		backButton = new JButton("add something else?");
 		add(backButton,BorderLayout.NORTH);
+		backButton.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				
+				setVisible(false);
+				oPanel.setVisible(true);
+				bPanel.hidePanels();
+			}
+			
+		});
+		
+	}
+	
+	public void createCheckOut()
+	{
+		checkOut = new JButton("Checkout");
+		add(checkOut,BorderLayout.SOUTH);
 		
 	}
 	
@@ -34,9 +64,8 @@ private JTextArea textArea;
 		
 	}
 	
-	public void printOut(String what)
-	{
-		textArea.append("Your total cost of whole order was : this is not working yet.... lol" );
+	public void printBasketInfo(String info){
+		textArea.setText(info);
 		
 	}
 	

@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -21,14 +22,16 @@ private JRadioButton bottomR;
 private JRadioButton cornerR;
 private JRadioButton sealed;
 private JTextField quantity;
+private BottomPanel bPanel;
+private InvoicePanel iPanel;
+private LogPanel lPanel;
 private JLabel lwidth, lheight, llength, lgrade, lcolor, lbottom, lsealed, lcorner, lquantity;
 	
 public OrderPanel(String border, int width, int height) {
 		super(border, width, height);
+		setBackground(Color.LIGHT_GRAY);
 		init();
-		
 	
-		
 	}
 	
 	public void init()
@@ -47,6 +50,13 @@ public OrderPanel(String border, int width, int height) {
 		
 	}
 	
+	public void linkPanels(BottomPanel bPanel, InvoicePanel iPanel, LogPanel lPanel)
+	{
+		this.bPanel = bPanel;
+		this.iPanel = iPanel;
+		this.lPanel = lPanel;
+	}
+	
 	public void createLists()
 	{
 		gradeList = new JComboBox<Integer>(grades);
@@ -63,7 +73,6 @@ public OrderPanel(String border, int width, int height) {
 	public void createLabels()
 	{
 
-		
 		lwidth = new JLabel("specify your width in cm : " + getChosenWidth());
 		lheight = new JLabel("specify your height in cm : " + getChosenHeight());
 		llength = new JLabel("specify your length in cm : " + getChosenLength());
@@ -84,6 +93,7 @@ public OrderPanel(String border, int width, int height) {
 		width.setMinorTickSpacing(5);
 		width.setPaintTicks(true);
 		width.setPaintLabels(true);
+		width.setMinimum(1);
 		width.addChangeListener(new ChangeListener(){
 
 			public void stateChanged(ChangeEvent e) {
@@ -98,6 +108,7 @@ public OrderPanel(String border, int width, int height) {
 		length.setMinorTickSpacing(5);
 		length.setPaintTicks(true);
 		length.setPaintLabels(true);
+		length.setMinimum(1);
 		length.addChangeListener(new ChangeListener(){
 
 			public void stateChanged(ChangeEvent e) {
@@ -112,6 +123,7 @@ public OrderPanel(String border, int width, int height) {
 		height.setMinorTickSpacing(5);
 		height.setPaintTicks(true);
 		height.setPaintLabels(true);
+		height.setMinimum(1);
 		height.addChangeListener(new ChangeListener(){
 
 			public void stateChanged(ChangeEvent e) {
@@ -252,9 +264,20 @@ public OrderPanel(String border, int width, int height) {
 		return height.getValue();
 	}
 	
-	public int getQuantity()
+	public int getQuantity() 
 	{
-		return Integer.parseInt(quantity.getText());
+		int q = 0;
+		try {
+			
+			if(Integer.parseInt(quantity.getText()) <= 25)
+			{
+				q = Integer.parseInt(quantity.getText());
+			}
+		} catch (NumberFormatException e) {
+		    
+		}
+		
+		return q;
 	}
 	
 	public void reset()

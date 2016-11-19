@@ -8,22 +8,19 @@ private int width,height,length,grade,colours,type, quantity;
 private double totalCost;
 private boolean bottom,corner,sealed;
 private ArrayList<BoxModel>boxes;
-private String another;
 private OrderPanel oPanel;
-private InvoicePanel iPanel;
+private LogPanel lPanel;
 
-	public Submit(OrderPanel oPanel, InvoicePanel iPanel)
+	public Submit(OrderPanel oPanel, LogPanel lPanel)
 	{
 		this.oPanel = oPanel;
-		this.iPanel = iPanel;
+		this.lPanel = lPanel;
 		boxes = new ArrayList<BoxModel>();
 	}
 	
+	
 	public void actionPerformed(ActionEvent e) {
 		
-		
-		iPanel.setVisible(false);
-		oPanel.setVisible(true);
 		width = oPanel.getChosenWidth();
 		height = oPanel.getChosenHeight();
 		length = oPanel.getChosenLength();
@@ -34,73 +31,84 @@ private InvoicePanel iPanel;
 		corner = oPanel.corner();
 		sealed = oPanel.isSealed();
 		
-		if(calculateType() == 1)
-		{
-			System.out.println("Type 1 was selected for this order");
-			for(int i = 0; i < quantity; i++)
-			{
-				boxes.add(new BoxType1(width,height,length,grade,colours,sealed,bottom,corner));
-			}
-
-			
-			
-		}
 		
-		if(calculateType() == 2)
-		{
-			System.out.println("Type 2 was selected for this order");
-			for(int i = 0; i < quantity; i++)
-			{
-				boxes.add(new BoxType2(width,height,length,grade,colours,sealed,bottom,corner));
-			}
-			
-		}
 		
-		if(calculateType() == 3)
+		if(boxes.size() + quantity <= 25)
 		{
-			System.out.println("Type 3 was selected for this order");
-			for(int i = 0; i < quantity; i++)
-			{
-				boxes.add(new BoxType3(width,height,length,grade,colours,sealed,bottom,corner));
-			}
 			
-		}
-		
-		if(calculateType() == 4)
-		{
-
-			System.out.println("Type 4 was selected for this order");
-			for(int i = 0; i < quantity; i++)
-			{
-				boxes.add(new BoxType4(width,height,length,grade,colours,sealed,bottom,corner));
-			}
-			
-		}
-		
-		if(calculateType() == 5)
-		{
-
-			System.out.println("Type 5 was selected for this order");
-			for(int i = 0; i < quantity; i++)
-			{
-				boxes.add(new BoxType5(width,height,length,grade,colours,sealed,bottom,corner));
-			}
-			
-		}
-		
-		if(calculateType() == 0)
-			
-		{
-			System.out.println("Sorry, but we are not producing boxes of your specifications");
-		}
+			if(calculateType() == 1)
+			{	
+				
+				for(int i = 0; i < quantity; i++)
+				{
+					boxes.add(new BoxType1(width,height,length,grade,colours,sealed,bottom,corner));
+				}
 	
-		//System.out.println("");
-		iPanel.printOut("You currently have " + boxes.size() + " items in your order");
-		
-		type = 0;
+				
+			}
+			
+			if(calculateType() == 2)
+			{
+			
+				for(int i = 0; i < quantity; i++)
+				{
+					boxes.add(new BoxType2(width,height,length,grade,colours,sealed,bottom,corner));
+				}
+				
+			}
+			
+			if(calculateType() == 3)
+			{
+				
+				for(int i = 0; i < quantity; i++)
+				{
+					boxes.add(new BoxType3(width,height,length,grade,colours,sealed,bottom,corner));
+				}
+				
+			}
+			
+			if(calculateType() == 4)
+			{
 	
 	
-
+				for(int i = 0; i < quantity; i++)
+				{
+					boxes.add(new BoxType4(width,height,length,grade,colours,sealed,bottom,corner));
+				}
+				
+			}
+			
+			if(calculateType() == 5)
+			{
+	
+				for(int i = 0; i < quantity; i++)
+				{
+					boxes.add(new BoxType5(width,height,length,grade,colours,sealed,bottom,corner));
+				}
+				
+			}
+			
+			if(calculateType() == 0)
+				
+			{
+				lPanel.print("Sorry, but we are not producing boxes of your specifications", true);
+			}
+			else if(quantity <= 0)
+			{
+				lPanel.print("Please enter a number in quantity field", true);
+			}
+			else
+			{
+				lPanel.print(quantity + " boxes of type " + type + " were added to your basket", false);
+			}
+		
+			type = 0;
+		}
+		else
+		{
+			lPanel.print("You cannot exceed more then 25 boxes in total", true);
+		}
+		
 		
 	}
 	
@@ -138,6 +146,48 @@ private InvoicePanel iPanel;
 		}
 		
 		return type;
+	}
+	
+	public int getBasketSize()
+	{
+		return boxes.size();
+	}
+	
+	public String more()
+	{
+		int t1 = 0;
+		int t2 = 0;
+		int t3 = 0;
+		int t4 = 0;
+		int t5 = 0;
+		String information = "";
+		
+		for(BoxModel b: boxes)
+		{
+			if(b.getBoxType() == t1)
+			{
+				t1++;
+			}
+			if(b.getBoxType() == t2)
+			{
+				t2++;
+			}
+			if(b.getBoxType() == t3)
+			{
+				t3++;
+			}
+			if(b.getBoxType() == t4)
+			{
+				t4++;
+			}
+			if(b.getBoxType() == t5)
+			{
+				t5++;
+			}
+		}
+		
+		
+		return information;
 	}
 
 

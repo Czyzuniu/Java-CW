@@ -10,7 +10,7 @@ public class EmptyPanel extends PanelModel{
 		size.width = 40;
 		size.height = 30;
 		setPreferredSize(size);
-		setBackground(Color.WHITE);
+		setBackground(Color.LIGHT_GRAY);
 		
 	}
 }

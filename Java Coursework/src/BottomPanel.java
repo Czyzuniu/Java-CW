@@ -1,3 +1,5 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,39 +10,36 @@ import javax.swing.event.ChangeListener;
 public class BottomPanel extends PanelModel{
 private JButton addTo;
 private JButton reset;
-private JButton checkOut;
+private JButton next;
 private Submit submitOrder;
 private Reset resetOrder;
 private OrderPanel oPanel;
 private InvoicePanel iPanel;
+private LogPanel lPanel;
 
-	public BottomPanel(String border, OrderPanel oPanel, InvoicePanel iPanel) {
+	public BottomPanel(String border) {
 		super(border);
+		setLayout(new BorderLayout());
+		resetButton();
+		nextButton();
+		setBackground(Color.LIGHT_GRAY);
+		
+	}
+	
+	public void linkPanels(OrderPanel oPanel, InvoicePanel iPanel, LogPanel lPanel)
+	{
 		this.oPanel = oPanel;
 		this.iPanel = iPanel;
-		resetButton();
-		addToButton();
-		checkOutButton();
-	
+		this.lPanel = lPanel;
 	}
-
+	
 	
 	public void addToButton()
 	{
-		
 		addTo = new JButton("Add to basket");
-		submitOrder = new Submit(oPanel, iPanel);
+		this.submitOrder = new Submit(oPanel, lPanel);
 		addTo.addActionListener(submitOrder);
-		addTo.addChangeListener(new ChangeListener(){
-
-			public void stateChanged(ChangeEvent e) {
-				checkOut.setVisible(true);
-				
-			}
-			
-		});
-		add(addTo);
-		
+		add(addTo, BorderLayout.CENTER);
 	}
 	
 	public void resetButton()
@@ -48,27 +47,48 @@ private InvoicePanel iPanel;
 		reset = new JButton("Reset");
 		resetOrder = new Reset(oPanel);
 		reset.addActionListener(resetOrder);
-		add(reset);
+		add(reset,BorderLayout.WEST);
 	}
 	
 	
 	
-	public void checkOutButton()
+	public void nextButton()
 	{
-		checkOut = new JButton("Checkout");
-		add(checkOut);
-		checkOut.setVisible(false);
-		checkOut.addActionListener(new ActionListener(){
+		next = new JButton("Next");
+		add(next,BorderLayout.EAST);
+		
+		next.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
 				
 				
 				oPanel.setVisible(false);
 				iPanel.setVisible(true);
+				iPanel.printBasketInfo(BasketInfo());
+				hidePanels();
 			}
 			
 		});
 		
 	}
 	
+	public void hidePanels()
+	{
+		if(oPanel.isVisible()){
+			setVisible(true);
+			lPanel.setVisible(true);
+		}
+		else
+		{
+			setVisible(false);
+			lPanel.setVisible(false);
+		}
+	}
+	
+	public String BasketInfo()
+	{
+		String information = "Your basket currently has " +  submitOrder.getBasketSize() + " boxes ";
+		
+		return information;
+	}
 }

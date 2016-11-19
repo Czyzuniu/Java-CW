@@ -3,10 +3,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
+import javax.swing.JPanel;
 
 public class MainPanel extends PanelModel{
 private BottomPanel Bpanel;
 private OrderPanel 	Opanel;
+private InvoicePanel Ipanel;
+private LogPanel Lpanel;
 
 	public MainPanel()
 	{
@@ -16,11 +19,17 @@ private OrderPanel 	Opanel;
 	
 	public void init()
 	{
-		InvoicePanel Ipanel = new InvoicePanel("Invoice", 500,450);
+		Lpanel = new LogPanel("Logger", 100, 50);
 		Opanel = new OrderPanel("Order", 500,450);
-		Bpanel = new BottomPanel("bottomPanel", Opanel, Ipanel);
+		Ipanel = new InvoicePanel("Invoice", 500,450);
+		Bpanel = new BottomPanel("bottomPanel");
 		
 		
+		Ipanel.linkPanels(Opanel, Bpanel);
+		Bpanel.linkPanels(Opanel, Ipanel, Lpanel);
+		Opanel.linkPanels(Bpanel, Ipanel, Lpanel);
+		Bpanel.addToButton();
+
 		
 		Dimension size = getPreferredSize();
 		size.width = 600;
@@ -33,13 +42,12 @@ private OrderPanel 	Opanel;
 		
 		EmptyPanel left = new EmptyPanel();
 		EmptyPanel right = new EmptyPanel();
-		EmptyPanel north = new EmptyPanel();
 		EmptyPanel center = new EmptyPanel();
 		
 		add(Bpanel, BorderLayout.SOUTH);
 		add(left, BorderLayout.WEST);
 		add(right, BorderLayout.EAST);
-		add(north, BorderLayout.NORTH);
+		add(Lpanel, BorderLayout.NORTH);
 		add(center, BorderLayout.CENTER);
 		
 		center.add(Opanel);
@@ -47,6 +55,5 @@ private OrderPanel 	Opanel;
 		
 		
 	}
-	
 	
 }
