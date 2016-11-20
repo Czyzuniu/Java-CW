@@ -45,8 +45,13 @@ private LogPanel lPanel;
 	public void resetButton()
 	{
 		reset = new JButton("Reset");
-		resetOrder = new Reset(oPanel);
-		reset.addActionListener(resetOrder);
+		reset.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				oPanel.reset();
+			}
+			
+		});
 		add(reset,BorderLayout.WEST);
 	}
 	

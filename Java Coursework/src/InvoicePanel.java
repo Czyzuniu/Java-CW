@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,7 +18,6 @@ private JButton checkOut;
 	public InvoicePanel(String border , int width, int height)
 	{
 		super(border, width, height);
-	
 		setLayout(new BorderLayout());
 		setVisible(false);
 		createBackButton();
@@ -69,6 +69,9 @@ private JButton checkOut;
 	public void createTextField()
 	{
 		textArea = new JTextArea();
+		textArea.setEditable(false);
+		textArea.setEnabled(false);
+		textArea.setDisabledTextColor(Color.BLACK);
 		textArea.setBorder(BorderFactory.createTitledBorder("Invoice TextBox"));
 		add(textArea, BorderLayout.CENTER);
 		

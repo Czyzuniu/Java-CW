@@ -150,7 +150,7 @@ public OrderPanel(String border, int width, int height) {
 		GridBagConstraints gc = new GridBagConstraints();
 		
 		gc.weightx = 1;
-		gc.weighty = 2;
+		gc.weighty = 1;
 		
 		gc.gridx = 0;
 		gc.gridy = 0;
