@@ -4,7 +4,9 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
@@ -92,7 +94,6 @@ public OrderPanel(String border, int width, int height) {
 	public void createSliders()
 	{
 		width = new JSlider();
-		width.setMinimum(1);
 		width.setMajorTickSpacing(20);
 		width.setMinorTickSpacing(5);
 		width.setPaintTicks(true);
@@ -102,7 +103,16 @@ public OrderPanel(String border, int width, int height) {
 			public void stateChanged(ChangeEvent e) {
 				
 				lwidth.setText("specify your width in cm : " + getChosenWidth());
-				
+				if(width.getValue() == 0 || height.getValue() == 0 || length.getValue() == 0)
+				{
+					lPanel.print("Your width,height or length cannot be 0", true);
+					bPanel.disableEverything();
+				}
+				else
+				{
+					lPanel.print("", false);
+					bPanel.enableEverything();
+				}
 			}
 			
 		});
@@ -111,7 +121,6 @@ public OrderPanel(String border, int width, int height) {
 		length.setMinorTickSpacing(5);
 		length.setPaintTicks(true);
 		length.setPaintLabels(true);
-		length.setMinimum(1);
 		length.addChangeListener(new ChangeListener(){
 
 			public void stateChanged(ChangeEvent e) {
@@ -126,13 +135,12 @@ public OrderPanel(String border, int width, int height) {
 		height.setMinorTickSpacing(5);
 		height.setPaintTicks(true);
 		height.setPaintLabels(true);
-		height.setMinimum(1);
 		height.addChangeListener(new ChangeListener(){
 
 			public void stateChanged(ChangeEvent e) {
 				
 				lheight.setText("specify your height in cm : " + getChosenHeight());
-				
+
 			}
 			
 		});
@@ -265,6 +273,11 @@ public OrderPanel(String border, int width, int height) {
 	public int getChosenHeight()
 	{
 		return height.getValue();
+	}
+	
+	public JLabel getqLabel()
+	{
+		return lquantity;
 	}
 	
 	public int getQuantity() 

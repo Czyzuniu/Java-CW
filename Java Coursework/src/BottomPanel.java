@@ -33,7 +33,6 @@ private LogPanel lPanel;
 		this.lPanel = lPanel;
 	}
 	
-	
 	public void addToButton()
 	{
 		addTo = new JButton("Add to basket");
@@ -70,24 +69,42 @@ private LogPanel lPanel;
 				oPanel.setVisible(false);
 				iPanel.setVisible(true);
 				iPanel.printBasketInfo(BasketInfo());
-				hidePanels();
+				disableClicks();
 			}
 			
 		});
 		
 	}
 	
-	public void hidePanels()
+	
+	public void disableClicks()
 	{
 		if(oPanel.isVisible()){
-			setVisible(true);
-			lPanel.setVisible(true);
+			addTo.setEnabled(true);
+			reset.setEnabled(true);
+			next.setEnabled(true);
 		}
 		else
 		{
-			setVisible(false);
-			lPanel.setVisible(false);
+			addTo.setEnabled(false);
+			reset.setEnabled(false);
+			next.setEnabled(false);
+			
 		}
+	}
+	
+	public void enableEverything()
+	{
+		addTo.setEnabled(true);
+		reset.setEnabled(true);
+		next.setEnabled(true);
+	}
+	
+	public void disableEverything()
+	{
+		addTo.setEnabled(false);
+		reset.setEnabled(false);
+		next.setEnabled(false);
 	}
 	
 	public String BasketInfo()

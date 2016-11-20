@@ -13,6 +13,7 @@ private JButton backButton;
 private JTextArea textArea;
 private OrderPanel oPanel;
 private BottomPanel bPanel;
+private LogPanel lPanel;
 private JButton checkOut;
 
 	public InvoicePanel(String border , int width, int height)
@@ -25,10 +26,11 @@ private JButton checkOut;
 		createCheckOut();
 	}
 	
-	public void linkPanels(OrderPanel oPanel, BottomPanel bPanel)
+	public void linkPanels(OrderPanel oPanel, BottomPanel bPanel, LogPanel lPanel)
 	{
 		this.oPanel = oPanel;
 		this.bPanel = bPanel;
+		this.lPanel = lPanel;
 	}
 	
 	
@@ -42,7 +44,7 @@ private JButton checkOut;
 				
 				setVisible(false);
 				oPanel.setVisible(true);
-				bPanel.hidePanels();
+				bPanel.disableClicks();
 			}
 			
 		});
@@ -56,7 +58,9 @@ private JButton checkOut;
 
 			public void actionPerformed(ActionEvent e) {
 			
+			
 				checkOut();
+				backButton.setEnabled(false);
 				
 			}
 			
@@ -83,6 +87,7 @@ private JButton checkOut;
 	
 	public void checkOut()
 	{
+		lPanel.print("Order successfully placed, thank you for your custom", false);
 		double total = 0;
 		for(BoxModel b: oPanel.getBasket())
 		{

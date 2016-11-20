@@ -20,12 +20,12 @@ private LogPanel Lpanel;
 	public void init()
 	{
 		Lpanel = new LogPanel("Logger", 100, 50);
-		Opanel = new OrderPanel("Order", 500,450);
+		Opanel = new OrderPanel("Order", 570,450);
 		Ipanel = new InvoicePanel("Invoice", 500,450);
 		Bpanel = new BottomPanel("bottomPanel");
 		
 		
-		Ipanel.linkPanels(Opanel, Bpanel);
+		Ipanel.linkPanels(Opanel, Bpanel, Lpanel);
 		Bpanel.linkPanels(Opanel, Ipanel, Lpanel);
 		Opanel.linkPanels(Bpanel, Ipanel, Lpanel);
 		Bpanel.addToButton();

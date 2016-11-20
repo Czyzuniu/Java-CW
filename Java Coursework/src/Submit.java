@@ -1,7 +1,9 @@
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
+import javax.swing.BorderFactory;
 
 public class Submit extends AbstractAction {
 private int width,height,length,grade,colours,type, quantity;
@@ -94,10 +96,12 @@ private LogPanel lPanel;
 			else if(quantity <= 0)
 			{
 				lPanel.print("Incorrect input, please enter a number less then 25", true);
+				oPanel.getqLabel().setBorder(BorderFactory.createLineBorder(Color.RED));
 			}
 			else
 			{
 				lPanel.print(quantity + " boxes of type " + type + " were added to your basket", false);
+				oPanel.getqLabel().setBorder(BorderFactory.createEmptyBorder());
 			}
 		
 			type = 0;
