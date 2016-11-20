@@ -126,6 +126,16 @@ public OrderPanel(String border, int width, int height) {
 			public void stateChanged(ChangeEvent e) {
 				
 				llength.setText("specify your length in cm : " + getChosenLength());
+				if(width.getValue() == 0 || height.getValue() == 0 || length.getValue() == 0)
+				{
+					lPanel.print("Your width,height or length cannot be 0", true);
+					bPanel.disableEverything();
+				}
+				else
+				{
+					lPanel.print("", false);
+					bPanel.enableEverything();
+				}
 				
 			}
 			
@@ -140,6 +150,16 @@ public OrderPanel(String border, int width, int height) {
 			public void stateChanged(ChangeEvent e) {
 				
 				lheight.setText("specify your height in cm : " + getChosenHeight());
+				if(width.getValue() == 0 || height.getValue() == 0 || length.getValue() == 0)
+				{
+					lPanel.print("Your width,height or length cannot be 0", true);
+					bPanel.disableEverything();
+				}
+				else
+				{
+					lPanel.print("", false);
+					bPanel.enableEverything();
+				}
 
 			}
 			
