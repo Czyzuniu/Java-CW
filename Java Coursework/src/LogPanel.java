@@ -9,11 +9,11 @@ private JTextArea logBox;
 	
 	public LogPanel(String border, int width, int height){
 		super(border, width, height);
-		errorBox();
+		logBox();
 	}
 	
 	
-	public void errorBox()
+	public void logBox()
 	{
 		logBox = new JTextArea();
 		logBox.setEditable(false);
@@ -36,6 +36,10 @@ private JTextArea logBox;
 		logBox.setText(what);
 	}
 	
+	public void clear()
+	{
+		logBox.setText(null);
+	}
 }	
 
 	

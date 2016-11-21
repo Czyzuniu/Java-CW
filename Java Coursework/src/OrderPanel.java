@@ -110,7 +110,7 @@ public OrderPanel(String border, int width, int height) {
 				}
 				else
 				{
-					lPanel.print("", false);
+					lPanel.clear();
 					bPanel.enableEverything();
 				}
 			}
@@ -133,7 +133,7 @@ public OrderPanel(String border, int width, int height) {
 				}
 				else
 				{
-					lPanel.print("", false);
+					lPanel.clear();
 					bPanel.enableEverything();
 				}
 				
@@ -157,7 +157,7 @@ public OrderPanel(String border, int width, int height) {
 				}
 				else
 				{
-					lPanel.print("", false);
+					lPanel.clear();
 					bPanel.enableEverything();
 				}
 

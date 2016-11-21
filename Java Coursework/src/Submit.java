@@ -100,9 +100,10 @@ private LogPanel lPanel;
 			}
 			else
 			{
-				lPanel.print(quantity + " boxes of type " + type + " were added to your basket", false);
+				
 				oPanel.getqLabel().setBorder(BorderFactory.createEmptyBorder());
 				oPanel.reset();
+				lPanel.print(quantity + " boxes of type " + type + " were added to your basket", false);
 			}
 		
 			type = 0;
