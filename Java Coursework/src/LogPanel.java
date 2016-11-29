@@ -18,6 +18,8 @@ private JTextArea logBox;
 		logBox = new JTextArea();
 		logBox.setEditable(false);
 		logBox.setEnabled(false);
+		Font f = new Font("Arial", Font.BOLD, 16);
+		logBox.setFont(f);
 		add(logBox);
 	}
 	

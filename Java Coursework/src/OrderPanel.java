@@ -36,7 +36,6 @@ public OrderPanel(String border, int width, int height) {
 		super(border, width, height);
 		setBackground(Color.LIGHT_GRAY);
 		init();
-	
 	}
 	
 	public void init()
@@ -65,28 +64,42 @@ public OrderPanel(String border, int width, int height) {
 	public void createLists()
 	{
 		gradeList = new JComboBox<Integer>(grades);
+		gradeList.setToolTipText("Choose your grade from the list, higher grade means higher price of the box");
 		colourList = new JComboBox<String>(colours);
+		colourList.setToolTipText("Select from the list, if you would like the box to be coloured");
 	}
 	
 	public void createRadioButtons()
 	{
 		bottomR = new JRadioButton();
+		bottomR.setToolTipText("Would you like your box to have stronger bottom?");
 		cornerR = new JRadioButton();
+		cornerR.setToolTipText("Would you like your box to have stronger bottom?");
 		sealed = new JRadioButton();
+		sealed.setToolTipText("Would you like your box to have stronger bottom?");
 	}
 	
 	public void createLabels()
 	{
 
 		lwidth = new JLabel("specify your width in cm : " + getChosenWidth());
+		lwidth.setToolTipText("Specify width of your box in cm");
 		lheight = new JLabel("specify your height in cm : " + getChosenHeight());
+		lheight.setToolTipText("Specify width of your box in cm");
 		llength = new JLabel("specify your length in cm : " + getChosenLength());
+		llength.setToolTipText("Specify width of your box in cm");
 		lgrade = new JLabel("specify grade of your card : ");
+		lgrade.setToolTipText("Choose your grade from the list, higher grade means higher price of the box");
 		lcolor = new JLabel("specify colour printing of your box : ");
+		lcolor.setToolTipText("Select from the list, if you would like the box to be coloured");
 		lbottom = new JLabel("Would you like bottom reinforcement?: ");
+		lbottom.setToolTipText("Would you like your box to have stronger bottom?");
 		lcorner = new JLabel("Would you like corner reinforcement?: ");
+		lcorner.setToolTipText("Would you like your box to have stronger corners?");
 		lsealed = new JLabel("Would you like your box to be sealed?");
+		lsealed.setToolTipText("Would you like your box to be sealed?");
 		lquantity = new JLabel("How many of these boxes would you like?");
+		lquantity.setToolTipText("Choose how many boxes would you like to order (max in total 25)");
 
 		
 	}
@@ -94,6 +107,7 @@ public OrderPanel(String border, int width, int height) {
 	public void createSliders()
 	{
 		width = new JSlider();
+		width.setToolTipText("Change your width of the box by using a slider");
 		width.setMajorTickSpacing(20);
 		width.setMinorTickSpacing(5);
 		width.setPaintTicks(true);
@@ -117,6 +131,7 @@ public OrderPanel(String border, int width, int height) {
 			
 		});
 		length = new JSlider();
+		length.setToolTipText("Change your length of the box by using a slider");
 		length.setMajorTickSpacing(20);
 		length.setMinorTickSpacing(5);
 		length.setPaintTicks(true);
@@ -141,6 +156,7 @@ public OrderPanel(String border, int width, int height) {
 			
 		});
 		height = new JSlider();
+		height.setToolTipText("Change your height of the box by using a slider");
 		height.setMajorTickSpacing(20);
 		height.setMinorTickSpacing(5);
 		height.setPaintTicks(true);
@@ -169,6 +185,7 @@ public OrderPanel(String border, int width, int height) {
 	public void createTextBoxes()
 	{
 		quantity = new JTextField();
+		quantity.setToolTipText("Choose how many boxes would you like to order (max in total 25)");
 		quantity.setColumns(10);
 	}
 	

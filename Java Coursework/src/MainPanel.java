@@ -19,7 +19,7 @@ private LogPanel Lpanel;
 	
 	public void init()
 	{
-		Lpanel = new LogPanel("Logger", 100, 50);
+		Lpanel = new LogPanel("Logger", 100, 60);
 		Opanel = new OrderPanel("Order", 570,450);
 		Ipanel = new InvoicePanel("Invoice", 500,450);
 		Bpanel = new BottomPanel("bottomPanel");

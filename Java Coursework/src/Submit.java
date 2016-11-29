@@ -11,11 +11,13 @@ private double totalCost;
 private boolean bottom,corner,sealed;
 private OrderPanel oPanel;
 private LogPanel lPanel;
+private InvoicePanel iPanel;
 
-	public Submit(OrderPanel oPanel, LogPanel lPanel)
+	public Submit(OrderPanel oPanel, LogPanel lPanel, InvoicePanel iPanel)
 	{
 		this.oPanel = oPanel;
 		this.lPanel = lPanel;
+		this.iPanel = iPanel;
 	}
 	
 	
@@ -104,6 +106,7 @@ private LogPanel lPanel;
 				oPanel.getqLabel().setBorder(BorderFactory.createEmptyBorder());
 				oPanel.reset();
 				lPanel.print(quantity + " boxes of type " + type + " were added to your basket", false);
+				iPanel.allowCheckOut();
 			}
 		
 			type = 0;

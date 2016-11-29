@@ -2,10 +2,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class InvoicePanel extends PanelModel {
 	
@@ -54,6 +57,8 @@ private JButton checkOut;
 	public void createCheckOut()
 	{
 		checkOut = new JButton("Checkout");
+		checkOut.setEnabled(false);
+		
 		checkOut.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
@@ -61,10 +66,13 @@ private JButton checkOut;
 			
 				checkOut();
 				backButton.setEnabled(false);
+				checkOut.setEnabled(false);
 				
 			}
 			
 		});
+		
+		
 		add(checkOut,BorderLayout.SOUTH);
 		
 		
@@ -89,13 +97,29 @@ private JButton checkOut;
 	{
 		lPanel.print("Order successfully placed, thank you for your custom", false);
 		double total = 0;
+		DecimalFormat df = new DecimalFormat("#.00"); 
 		for(BoxModel b: oPanel.getBasket())
 		{
 			b.calculateCost();
 			total += b.getCost();
+			
 		}
 		
-		textArea.setText("Total cost of your order is : " + total);
+		
+		if(total < 1)
+		{
+			textArea.append("\ntotal price of your order is : £ 0" + df.format(total));
+		}
+		else
+		{
+			textArea.append("\ntotal price of your order is : £" + df.format(total));
+		}
+		
+	}
+	
+	public void allowCheckOut()
+	{
+		checkOut.setEnabled(true);
 	}
 	
 }

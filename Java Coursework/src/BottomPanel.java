@@ -36,7 +36,7 @@ private LogPanel lPanel;
 	public void addToButton()
 	{
 		addTo = new JButton("Add to basket");
-		this.submitOrder = new Submit(oPanel, lPanel);
+		this.submitOrder = new Submit(oPanel, lPanel, iPanel);
 		addTo.addActionListener(submitOrder);
 		add(addTo, BorderLayout.CENTER);
 	}
