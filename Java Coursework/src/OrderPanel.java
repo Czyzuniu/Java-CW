@@ -15,62 +15,54 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class OrderPanel extends PanelModel {
-private JSlider width;
-private JSlider height;
-private JSlider length;
-private JComboBox<Integer> gradeList;
-private JComboBox<String> colourList;
-private Integer[] grades = new Integer[] {1,2,3,4,5};
-private String[] colours = new String[] {"no colour", "1 colour", "2 colours"};
-private JRadioButton bottomR;
-private JRadioButton cornerR;
-private JRadioButton sealed;
-private JTextField quantity;
-private ArrayList<BoxModel>boxes;
-private BottomPanel bPanel;
-private InvoicePanel iPanel;
-private LogPanel lPanel;
-private JLabel lwidth, lheight, llength, lgrade, lcolor, lbottom, lsealed, lcorner, lquantity;
-	
-public OrderPanel(String border, int width, int height) {
+	private JSlider width;
+	private JSlider height;
+	private JSlider length;
+	private JComboBox<Integer> gradeList;
+	private JComboBox<String> colourList;
+	private Integer[] grades = new Integer[] { 1, 2, 3, 4, 5 };
+	private String[] colours = new String[] { "no colour", "1 colour", "2 colours" };
+	private JRadioButton bottomR;
+	private JRadioButton cornerR;
+	private JRadioButton sealed;
+	private JTextField quantity;
+	private ArrayList<BoxModel> boxes;
+	private BottomPanel bPanel;
+	private LogPanel lPanel;
+	private JLabel lwidth, lheight, llength, lgrade, lcolor, lbottom, lsealed, lcorner, lquantity;
+
+	public OrderPanel(String border, int width, int height) {
 		super(border, width, height);
 		setBackground(Color.LIGHT_GRAY);
 		init();
 	}
-	
-	public void init()
-	{
-		//Font font = new Font("Arial", 16, Font.BOLD);
+
+	public void init() {
+		// Font font = new Font("Arial", 16, Font.BOLD);
 		boxes = new ArrayList<BoxModel>();
 		createSliders();
 		createLabels();
 		createLists();
 		createRadioButtons();
 		createTextBoxes();
-		
+
 		addCompontents();
-		
-		
-		
+
 	}
-	
-	public void linkPanels(BottomPanel bPanel, InvoicePanel iPanel, LogPanel lPanel)
-	{
+
+	public void linkPanels(BottomPanel bPanel, InvoicePanel iPanel, LogPanel lPanel) {
 		this.bPanel = bPanel;
-		this.iPanel = iPanel;
 		this.lPanel = lPanel;
 	}
-	
-	public void createLists()
-	{
+
+	public void createLists() {
 		gradeList = new JComboBox<Integer>(grades);
 		gradeList.setToolTipText("Choose your grade from the list, higher grade means higher price of the box");
 		colourList = new JComboBox<String>(colours);
 		colourList.setToolTipText("Select from the list, if you would like the box to be coloured");
 	}
-	
-	public void createRadioButtons()
-	{
+
+	public void createRadioButtons() {
 		bottomR = new JRadioButton();
 		bottomR.setToolTipText("Would you like your box to have stronger bottom?");
 		cornerR = new JRadioButton();
@@ -78,9 +70,8 @@ public OrderPanel(String border, int width, int height) {
 		sealed = new JRadioButton();
 		sealed.setToolTipText("Would you like your box to have stronger bottom?");
 	}
-	
-	public void createLabels()
-	{
+
+	public void createLabels() {
 
 		lwidth = new JLabel("specify your width in cm : " + getChosenWidth());
 		lwidth.setToolTipText("Specify width of your box in cm");
@@ -101,34 +92,29 @@ public OrderPanel(String border, int width, int height) {
 		lquantity = new JLabel("How many of these boxes would you like?");
 		lquantity.setToolTipText("Choose how many boxes would you like to order (max in total 25)");
 
-		
 	}
-	
-	public void createSliders()
-	{
+
+	public void createSliders() {
 		width = new JSlider();
 		width.setToolTipText("Change your width of the box by using a slider");
 		width.setMajorTickSpacing(20);
 		width.setMinorTickSpacing(5);
 		width.setPaintTicks(true);
 		width.setPaintLabels(true);
-		width.addChangeListener(new ChangeListener(){
+		width.addChangeListener(new ChangeListener() {
 
 			public void stateChanged(ChangeEvent e) {
-				
+
 				lwidth.setText("specify your width in cm : " + getChosenWidth());
-				if(width.getValue() == 0 || height.getValue() == 0 || length.getValue() == 0)
-				{
+				if (width.getValue() == 0 || height.getValue() == 0 || length.getValue() == 0) {
 					lPanel.print("Your width,height or length cannot be 0", true);
 					bPanel.disableEverything();
-				}
-				else
-				{
+				} else {
 					lPanel.clear();
 					bPanel.enableEverything();
 				}
 			}
-			
+
 		});
 		length = new JSlider();
 		length.setToolTipText("Change your length of the box by using a slider");
@@ -136,24 +122,21 @@ public OrderPanel(String border, int width, int height) {
 		length.setMinorTickSpacing(5);
 		length.setPaintTicks(true);
 		length.setPaintLabels(true);
-		length.addChangeListener(new ChangeListener(){
+		length.addChangeListener(new ChangeListener() {
 
 			public void stateChanged(ChangeEvent e) {
-				
+
 				llength.setText("specify your length in cm : " + getChosenLength());
-				if(width.getValue() == 0 || height.getValue() == 0 || length.getValue() == 0)
-				{
+				if (width.getValue() == 0 || height.getValue() == 0 || length.getValue() == 0) {
 					lPanel.print("Your width,height or length cannot be 0", true);
 					bPanel.disableEverything();
-				}
-				else
-				{
+				} else {
 					lPanel.clear();
 					bPanel.enableEverything();
 				}
-				
+
 			}
-			
+
 		});
 		height = new JSlider();
 		height.setToolTipText("Change your height of the box by using a slider");
@@ -161,190 +144,170 @@ public OrderPanel(String border, int width, int height) {
 		height.setMinorTickSpacing(5);
 		height.setPaintTicks(true);
 		height.setPaintLabels(true);
-		height.addChangeListener(new ChangeListener(){
+		height.addChangeListener(new ChangeListener() {
 
 			public void stateChanged(ChangeEvent e) {
-				
+
 				lheight.setText("specify your height in cm : " + getChosenHeight());
-				if(width.getValue() == 0 || height.getValue() == 0 || length.getValue() == 0)
-				{
+				if (width.getValue() == 0 || height.getValue() == 0 || length.getValue() == 0) {
 					lPanel.print("Your width,height or length cannot be 0", true);
 					bPanel.disableEverything();
-				}
-				else
-				{
+				} else {
 					lPanel.clear();
 					bPanel.enableEverything();
 				}
 
 			}
-			
+
 		});
 	}
-	
-	public void createTextBoxes()
-	{
+
+	public void createTextBoxes() {
 		quantity = new JTextField();
 		quantity.setToolTipText("Choose how many boxes would you like to order (max in total 25)");
 		quantity.setColumns(10);
 	}
-	
-	public void addCompontents()
-	{
+
+	public void addCompontents() {
 		setLayout(new GridBagLayout());
 		GridBagConstraints gc = new GridBagConstraints();
-		
+
 		gc.weightx = 1;
 		gc.weighty = 1;
-		
+
 		gc.gridx = 0;
 		gc.gridy = 0;
-		
+
 		add(lwidth, gc);
-		
+
 		gc.gridx = 1;
 		gc.gridy = 0;
-		add(width,gc);
-		
+		add(width, gc);
+
 		gc.gridx = 0;
 		gc.gridy = 1;
 		add(llength, gc);
-		
+
 		gc.gridx = 1;
 		gc.gridy = 1;
-		add(length,gc);
-		
+		add(length, gc);
+
 		gc.gridx = 0;
 		gc.gridy = 2;
-		add(lheight,gc);
-		
+		add(lheight, gc);
+
 		gc.gridx = 1;
 		gc.gridy = 2;
-		add(height,gc);
-		
+		add(height, gc);
+
 		gc.gridx = 0;
 		gc.gridy = 3;
-		add(lgrade,gc);
-		
+		add(lgrade, gc);
+
 		gc.gridx = 1;
 		gc.gridy = 3;
-		add(gradeList,gc);
-		
-		
+		add(gradeList, gc);
+
 		gc.gridx = 0;
 		gc.gridy = 4;
-		add(lcolor,gc);
-		
+		add(lcolor, gc);
+
 		gc.gridx = 1;
 		gc.gridy = 4;
 		add(colourList, gc);
-		
+
 		gc.gridx = 0;
 		gc.gridy = 5;
-		add(lbottom,gc);
-		
+		add(lbottom, gc);
+
 		gc.gridx = 1;
 		gc.gridy = 5;
-		add(bottomR,gc);
-		
+		add(bottomR, gc);
+
 		gc.gridx = 0;
 		gc.gridy = 6;
-		add(lcorner,gc);
-		
+		add(lcorner, gc);
+
 		gc.gridx = 1;
 		gc.gridy = 6;
-		add(cornerR,gc);
-		
+		add(cornerR, gc);
+
 		gc.gridx = 0;
 		gc.gridy = 7;
-		add(lsealed,gc);
-		
+		add(lsealed, gc);
+
 		gc.gridx = 1;
 		gc.gridy = 7;
-		add(sealed,gc);
-		
+		add(sealed, gc);
+
 		gc.gridx = 0;
 		gc.gridy = 8;
-		add(lquantity,gc);
-		
+		add(lquantity, gc);
+
 		gc.gridx = 1;
 		gc.gridy = 8;
-		add(quantity,gc);
+		add(quantity, gc);
 	}
 
-	public int getgradeList()
-	{
+	public int getgradeList() {
 		return grades[gradeList.getSelectedIndex()];
 	}
-	
-	public int getColourList()
-	{
+
+	public int getColourList() {
 		return colourList.getSelectedIndex();
 	}
-	
-	public boolean isSealed()
-	{
+
+	public boolean isSealed() {
 		return sealed.isSelected();
 	}
 
-	public boolean bottom()
-	{
+	public boolean bottom() {
 		return bottomR.isSelected();
 	}
-	
-	public boolean corner()
-	{
+
+	public boolean corner() {
 		return cornerR.isSelected();
 	}
-	
-	public int getChosenWidth()
-	{
+
+	public int getChosenWidth() {
 		return width.getValue();
 	}
-	
-	public int getChosenLength()
-	{
+
+	public int getChosenLength() {
 		return length.getValue();
 	}
-	
-	public int getChosenHeight()
-	{
+
+	public int getChosenHeight() {
 		return height.getValue();
 	}
-	
-	public JLabel getqLabel()
-	{
+
+	public JLabel getqLabel() {
 		return lquantity;
 	}
-	
-	public int getQuantity() 
-	{
+
+	public int getQuantity() {
 		int q = 0;
 		try {
-			
-			if(Integer.parseInt(quantity.getText()) <= 25)
-			{
+
+			if (Integer.parseInt(quantity.getText()) <= 25) {
 				q = Integer.parseInt(quantity.getText());
 			}
 		} catch (NumberFormatException e) {
-		    
+
 		}
-		
+
 		return q;
 	}
-	
-	public int basketSize()
-	{
+
+	public int basketSize() {
 		return boxes.size();
 	}
-	
-	public ArrayList<BoxModel> getBasket()
-	{
+
+	public ArrayList<BoxModel> getBasket() {
 		return boxes;
 	}
-	
-	public void reset()
-	{
+
+	public void reset() {
 		width.setValue(50);
 		height.setValue(50);
 		length.setValue(50);

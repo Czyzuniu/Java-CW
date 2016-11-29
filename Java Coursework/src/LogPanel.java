@@ -3,18 +3,16 @@ import java.awt.Font;
 
 import javax.swing.JTextArea;
 
-public class LogPanel extends PanelModel{
+public class LogPanel extends PanelModel {
 
-private JTextArea logBox;	
-	
-	public LogPanel(String border, int width, int height){
+	private JTextArea logBox;
+
+	public LogPanel(String border, int width, int height) {
 		super(border, width, height);
 		logBox();
 	}
-	
-	
-	public void logBox()
-	{
+
+	public void logBox() {
 		logBox = new JTextArea();
 		logBox.setEditable(false);
 		logBox.setEnabled(false);
@@ -22,26 +20,19 @@ private JTextArea logBox;
 		logBox.setFont(f);
 		add(logBox);
 	}
-	
-	public void print(String what, boolean isError)
-	{
-		
-		if(isError == true)
-		{
+
+	public void print(String what, boolean isError) {
+
+		if (isError == true) {
 			logBox.setDisabledTextColor(Color.RED);
-		}
-		else
-		{
+		} else {
 			logBox.setDisabledTextColor(Color.GREEN);
 		}
-		
+
 		logBox.setText(what);
 	}
-	
-	public void clear()
-	{
+
+	public void clear() {
 		logBox.setText(null);
 	}
-}	
-
-	
+}

@@ -6,21 +6,18 @@ import javax.swing.JPanel;
 
 public abstract class PanelModel extends JPanel {
 
-	public PanelModel()
-	{
-		
+	public PanelModel() {
+
 	}
-	
-	public PanelModel(String border)
-	{
+
+	public PanelModel(String border) {
 		setBackground(Color.WHITE);
 		setBorder(BorderFactory.createEtchedBorder());
-		//Font newFont = new Font("Arial",Font.BOLD, 22);
-		
+		// Font newFont = new Font("Arial",Font.BOLD, 22);
+
 	}
-	
-	public PanelModel(String border, int width, int height)
-	{
+
+	public PanelModel(String border, int width, int height) {
 		setBackground(Color.WHITE);
 		setBorder(BorderFactory.createEtchedBorder());
 		Dimension size = getPreferredSize();
