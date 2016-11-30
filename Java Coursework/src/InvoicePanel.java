@@ -106,5 +106,9 @@ public class InvoicePanel extends PanelModel {
 	public void allowCheckOut() {
 		checkOut.setEnabled(true);
 	}
-
+	
+	public void disableCheckOut()
+	{
+		checkOut.setEnabled(false);
+	}
 }

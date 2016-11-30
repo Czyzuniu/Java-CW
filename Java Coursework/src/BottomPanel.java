@@ -33,6 +33,7 @@ public class BottomPanel extends PanelModel {
 		addTo = new JButton("Add to basket");
 		this.submitOrder = new Submit(oPanel, lPanel, iPanel);
 		addTo.addActionListener(submitOrder);
+		addTo.addActionListener(new Reset(oPanel, iPanel, lPanel));
 		add(addTo, BorderLayout.CENTER);
 	}
 
@@ -68,11 +69,11 @@ public class BottomPanel extends PanelModel {
 
 	public void disableClicks() {
 		if (oPanel.isVisible()) {
-			addTo.setEnabled(true);
+			addTo.setText("Add to basket");
 			reset.setEnabled(true);
 			next.setEnabled(true);
 		} else {
-			addTo.setEnabled(false);
+			addTo.setText("Clear your basket");
 			reset.setEnabled(false);
 			next.setEnabled(false);
 

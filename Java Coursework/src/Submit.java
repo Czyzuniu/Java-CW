@@ -19,6 +19,9 @@ public class Submit extends AbstractAction {
 
 	public void actionPerformed(ActionEvent e) {
 
+	if(oPanel.isVisible())
+	{
+	
 		width = oPanel.getChosenWidth();
 		height = oPanel.getChosenHeight();
 		length = oPanel.getChosenLength();
@@ -96,7 +99,7 @@ public class Submit extends AbstractAction {
 			lPanel.print("\nYou cannot exceed more then 25 boxes in total you currently have " + oPanel.basketSize(),
 					true);
 		}
-
+	}
 	}
 
 	public int calculateType() {
