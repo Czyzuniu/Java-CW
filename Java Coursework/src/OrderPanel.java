@@ -318,11 +318,9 @@ public class OrderPanel extends PanelModel {
 		sealed.setSelected(false);
 		quantity.setText("");
 	}
-	
-	public void clearBasket()
-	{
-		for(int i = 0; i < boxes.size(); i++)
-		{
+
+	public void clearBasket() {
+		for (int i = 0; i < boxes.size(); i++) {
 			boxes.remove(i);
 		}
 	}

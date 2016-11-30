@@ -19,87 +19,92 @@ public class Submit extends AbstractAction {
 
 	public void actionPerformed(ActionEvent e) {
 
-	if(oPanel.isVisible())
-	{
-	
-		width = oPanel.getChosenWidth();
-		height = oPanel.getChosenHeight();
-		length = oPanel.getChosenLength();
-		grade = oPanel.getgradeList();
-		colours = oPanel.getColourList();
-		quantity = oPanel.getQuantity();
-		bottom = oPanel.bottom();
-		corner = oPanel.corner();
-		sealed = oPanel.isSealed();
+		if (oPanel.isVisible()) {
 
-		if (oPanel.getBasket().size() + quantity <= 25) {
+			width = oPanel.getChosenWidth();
+			height = oPanel.getChosenHeight();
+			length = oPanel.getChosenLength();
+			grade = oPanel.getgradeList();
+			colours = oPanel.getColourList();
+			quantity = oPanel.getQuantity();
+			bottom = oPanel.bottom();
+			corner = oPanel.corner();
+			sealed = oPanel.isSealed();
 
-			if (calculateType() == 1) {
+			if (oPanel.getBasket().size() + quantity <= 25) {
 
-				for (int i = 0; i < quantity; i++) {
-					oPanel.getBasket().add(new BoxType1(width, height, length, grade, colours, sealed, bottom, corner));
+				if (calculateType() == 1) {
+
+					for (int i = 0; i < quantity; i++) {
+						oPanel.getBasket()
+								.add(new BoxType1(width, height, length, grade, colours, sealed, bottom, corner));
+					}
+
 				}
 
-			}
+				if (calculateType() == 2) {
 
-			if (calculateType() == 2) {
+					for (int i = 0; i < quantity; i++) {
+						oPanel.getBasket()
+								.add(new BoxType2(width, height, length, grade, colours, sealed, bottom, corner));
+					}
 
-				for (int i = 0; i < quantity; i++) {
-					oPanel.getBasket().add(new BoxType2(width, height, length, grade, colours, sealed, bottom, corner));
 				}
 
-			}
+				if (calculateType() == 3) {
 
-			if (calculateType() == 3) {
+					for (int i = 0; i < quantity; i++) {
+						oPanel.getBasket()
+								.add(new BoxType3(width, height, length, grade, colours, sealed, bottom, corner));
+					}
 
-				for (int i = 0; i < quantity; i++) {
-					oPanel.getBasket().add(new BoxType3(width, height, length, grade, colours, sealed, bottom, corner));
 				}
 
-			}
+				if (calculateType() == 4) {
 
-			if (calculateType() == 4) {
+					for (int i = 0; i < quantity; i++) {
+						oPanel.getBasket()
+								.add(new BoxType4(width, height, length, grade, colours, sealed, bottom, corner));
+					}
 
-				for (int i = 0; i < quantity; i++) {
-					oPanel.getBasket().add(new BoxType4(width, height, length, grade, colours, sealed, bottom, corner));
 				}
 
-			}
+				if (calculateType() == 5) {
 
-			if (calculateType() == 5) {
+					for (int i = 0; i < quantity; i++) {
+						oPanel.getBasket()
+								.add(new BoxType5(width, height, length, grade, colours, sealed, bottom, corner));
+					}
 
-				for (int i = 0; i < quantity; i++) {
-					oPanel.getBasket().add(new BoxType5(width, height, length, grade, colours, sealed, bottom, corner));
 				}
 
-			}
+				if (calculateType() == 0)
 
-			if (calculateType() == 0)
-
-			{
-				lPanel.print("\nSorry, but we are not producing boxes of your specifications", true);
-			} else if (quantity <= 0) {
-				lPanel.print("\nIncorrect input, please enter a number less then 25, but greater then 0", true);
-				oPanel.getqLabel().setBorder(BorderFactory.createLineBorder(Color.RED));
-			} else {
-
-				oPanel.getqLabel().setBorder(BorderFactory.createEmptyBorder());
-				oPanel.reset();
-				if (quantity == 1) {
-					lPanel.print("\n" + quantity + " box of type " + type + " was added to your basket", false);
+				{
+					lPanel.print("\nSorry, but we are not producing boxes of your specifications", true);
+				} else if (quantity <= 0) {
+					lPanel.print("\nIncorrect input, please enter a number less then 25, but greater then 0", true);
+					oPanel.getqLabel().setBorder(BorderFactory.createLineBorder(Color.RED));
 				} else {
-					lPanel.print("\n" + quantity + " boxes of type " + type + " were added to your basket", false);
+
+					oPanel.getqLabel().setBorder(BorderFactory.createEmptyBorder());
+					oPanel.reset();
+					if (quantity == 1) {
+						lPanel.print("\n" + quantity + " box of type " + type + " was added to your basket", false);
+					} else {
+						lPanel.print("\n" + quantity + " boxes of type " + type + " were added to your basket", false);
+					}
+
+					iPanel.allowCheckOut();
 				}
 
-				iPanel.allowCheckOut();
+				type = 0;
+			} else {
+				lPanel.print(
+						"\nYou cannot exceed more then 25 boxes in total you currently have " + oPanel.basketSize(),
+						true);
 			}
-
-			type = 0;
-		} else {
-			lPanel.print("\nYou cannot exceed more then 25 boxes in total you currently have " + oPanel.basketSize(),
-					true);
 		}
-	}
 	}
 
 	public int calculateType() {
